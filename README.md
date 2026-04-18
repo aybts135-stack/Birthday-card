@@ -23,8 +23,7 @@
         .birthday-container {
             text-align: center;
             z-index: 10;
-            max-width: 500px;
-            width: 100%;
+            max-width: 90%;
         }
 
         .greeting {
@@ -36,13 +35,20 @@
 
         .letter-card {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 25px;
             border-radius: 20px;
+            max-width: 450px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 30px;
-            line-height: 1.6;
+            margin: 0 auto 30px auto;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .letter-text {
+            font-size: 1rem;
+            color: #fce4ec;
             text-align: left;
         }
 
@@ -54,8 +60,8 @@
             text-align: center;
         }
 
-        /* Balloons */
-        .balloon-container {
+        /* Floating Elements Container */
+        .animation-container {
             position: fixed;
             width: 100%;
             height: 100%;
@@ -64,25 +70,42 @@
             pointer-events: none;
         }
 
-        .balloon {
+        /* Balloons & Hearts (Floating UP) */
+        .balloon, .heart {
             position: absolute;
             bottom: -150px;
-            width: 50px;
-            height: 70px;
-            background: #ff85a1;
-            border-radius: 50%;
-            animation: fly 8s linear infinite;
+            animation: floatUp 8s linear infinite;
         }
 
-        .balloon:nth-child(1) { left: 10%; background: #ff00de; animation-duration: 10s; }
-        .balloon:nth-child(2) { left: 30%; background: #7b2cbf; animation-duration: 7s; animation-delay: 2s; }
-        .balloon:nth-child(3) { left: 50%; background: #00d4ff; animation-duration: 9s; animation-delay: 4s; }
-        .balloon:nth-child(4) { left: 70%; background: #ffbd00; animation-duration: 11s; animation-delay: 1s; }
-        .balloon:nth-child(5) { left: 90%; background: #ff4d4d; animation-duration: 8s; animation-delay: 3s; }
+        .balloon {
+            width: 50px;
+            height: 70px;
+            border-radius: 50%;
+        }
 
-        @keyframes fly {
+        .heart {
+            color: #ff4d4d;
+            font-size: 25px;
+        }
+
+        /* Confetti (Falling DOWN) */
+        .confetti {
+            position: absolute;
+            top: -50px;
+            width: 10px;
+            height: 10px;
+            animation: fallDown 5s linear infinite;
+        }
+
+        /* Animation Keyframes */
+        @keyframes floatUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-120vh) rotate(20deg); opacity: 0; }
+        }
+
+        @keyframes fallDown {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
         }
 
         @keyframes pulse {
@@ -90,36 +113,36 @@
             50% { transform: scale(1.05); }
         }
 
+        /* Cake Styling */
         .cake { position: relative; width: 100px; margin: 0 auto; }
         .layer { height: 20px; border-radius: 5px; margin: 2px auto; background: #f06292; }
         .top { width: 50px; } .mid { width: 80px; } .bot { width: 100px; }
-        .candle { width: 6px; height: 15px; background: gold; margin: 0 auto; position: relative;}
+        .candle { width: 6px; height: 15px; background: gold; margin: 0 auto; position: relative; }
         .candle::after { content: '🔥'; position: absolute; top: -15px; left: -5px; }
+
     </style>
 </head>
 <body>
-    <div class="balloon-container">
-        <div class="balloon"></div>
-        <div class="balloon"></div>
-        <div class="balloon</div>
-        <div class="balloon"></div>
-        <div class="balloon"></div>
-    </div>
+
+    <div class="animation-container" id="visuals">
+        </div>
 
     <div class="birthday-container">
         <h1 class="greeting">Happy Birthday, Prachuuu! 🎂</h1>
         
         <div class="letter-card">
-            🌸 <strong>Dear Bestie,</strong> 🌸<br><br>
-            You are not just my friend, you are my favorite person, my partner in crime, 
-            and the one who makes my life so much more beautiful 💕<br><br>
-            On your special day, I wish you:<br>
-            ✨ Endless smiles | 🎁 Sweet surprises<br>
-            🌈 Dreams coming true | 💫 Happiness that never ends<br><br>
-            Thank you for being <strong>YOU</strong>—kind, crazy, caring, and absolutely amazing 💖<br><br>
-            🍰 Let’s make more memories, laugh louder, and stay best friends forever ♾️.<br><br>
-            Thank you for being born and not leaving me alone in this world. You are the strongest person I know. Always be happy 😊 and healthy 💖.<br><br>
-            <span class="warning">And don't ever make another best friend 🔪 instead of me!</span>
+            <div class="letter-text">
+                🌸 <strong>Dear Bestie,</strong> 🌸<br><br>
+                You are not just my friend, you are my favorite person, my partner in crime, 
+                and the one who makes my life so much more beautiful 💕<br><br>
+                On your special day, I wish you:<br>
+                ✨ Endless smiles | 🎁 Sweet surprises<br>
+                🌈 Dreams coming true | 💫 Happiness that never ends<br><br>
+                Thank you for being <strong>YOU</strong>—kind, crazy, caring, and absolutely amazing 💖<br><br>
+                🍰 Let’s make more memories, laugh louder, and stay best friends forever ♾️.<br><br>
+                Thank you for being born and not leaving me alone in this world. You are the strongest person I know. Always be happy 😊 and healthy 💖.<br><br>
+                <span class="warning">And don't ever make another best friend 🔪 instead of me!</span>
+            </div>
         </div>
 
         <div class="cake">
@@ -129,5 +152,43 @@
             <div class="layer bot"></div>
         </div>
     </div>
+
+    <script>
+        const container = document.getElementById('visuals');
+        const colors = ['#ff00de', '#7b2cbf', '#00d4ff', '#ffbd00', '#ff4d4d', '#ffffff'];
+
+        function createElements() {
+            // Create 15 Confetti
+            for(let i=0; i<15; i++) {
+                let c = document.createElement('div');
+                c.className = 'confetti';
+                c.style.left = Math.random() * 100 + '%';
+                c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                c.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(c);
+            }
+
+            // Create 8 Balloons
+            for(let i=0; i<8; i++) {
+                let b = document.createElement('div');
+                b.className = 'balloon';
+                b.style.left = Math.random() * 100 + '%';
+                b.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                b.style.animationDelay = Math.random() * 8 + 's';
+                container.appendChild(b);
+            }
+
+            // Create 10 Hearts
+            for(let i=0; i<10; i++) {
+                let h = document.createElement('div');
+                h.className = 'heart';
+                h.innerHTML = '❤️';
+                h.style.left = Math.random() * 100 + '%';
+                h.style.animationDelay = Math.random() * 8 + 's';
+                container.appendChild(h);
+            }
+        }
+        createElements();
+    </script>
 </body>
 </html>
